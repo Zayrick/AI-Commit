@@ -6,7 +6,7 @@
 
 <h1>AI Commit</h1>
 
-使用 OpenAI / Azure OpenAI / DeepSeek / Gemini API 审查 Git 暂存区修改，生成符合 Conventional Commit 规范的提交消息，简化提交流程，保持提交规范一致。
+使用 OpenAI API 审查 Git 暂存区修改，生成符合 Conventional Commit 规范的提交消息，简化提交流程，保持提交规范一致。
 
 [English](./README.md) · **简体中文** · [报告问题][github-issues-link] · [请求功能][github-issues-link]
 
@@ -27,10 +27,8 @@
 
 ## ✨ 特性
 
-- 🤯 支持使用 OpenAI / Azure OpenAI / DeepSeek / Gemini API 根据 git diffs 自动生成提交信息
-- 🗺️ 支持多语言提交信息
-- 😜 支持添加 Gitmoji
-- 🛠️ 支持自定义系统提示词
+- 🤯 支持使用 OpenAI API 根据 git diffs 自动生成提交信息（兼容任何 OpenAI 兼容端点）
+- 🛠️ 支持自定义提示词模板，使用 `${gitContext}` 占位符注入 git 上下文
 - 📝 支持 Conventional Commits 规范
 
 ## 📦 安装
@@ -55,26 +53,18 @@
 
 ### ⚙️ 配置
 
-> **Note** Version >= 0.0.5 不需要配置 `EMOJI_ENABLED` 和 `FULL_GITMOJI_SPEC`，默认提示词为 [prompt/without_gitmoji.md](./prompt/with_gitmoji.md)，如果不需要使用 `Gitmoji`，请将 `SYSTEM_PROMPT` 设置为您的自定义提示词, 请参考 [prompt/without_gitmoji.md](./prompt/without_gitmoji.md)。
-
 在 `VSCode` 设置中，找到 "ai-commit" 配置项，并根据需要进行配置
 
-| 配置               |  类型  |         默认         | 必要 |                                              备注                                               |
-| :----------------- | :----: | :------------------: | :--: | :---------------------------------------------------------------------------------------------: |
-| AI_PROVIDER        | string |        openai        | Yes  |                            Select AI Provider: `openai` or `gemini`.                            |
-| OPENAI_API_KEY     | string |         None         |  是  |                   [OpenAI 令牌](https://platform.openai.com/account/api-keys)                   |
-| OPENAI_BASE_URL    | string |         None         |  否  |       如果是 Azure，使用：https://{resource}.openai.azure.com/openai/deployments/{model}        |
-| OPENAI_MODEL       | string |        gpt-4o        |  是  |     OpenAI MODEL, 你可以通过运行 `Show Available OpenAI Models` 命令从列表中选择一个模型。      |
-| AZURE_API_VERSION  | string |         None         |  否  |                                        AZURE_API_VERSION                                        |
-| OPENAI_TEMPERATURE | number |         0.7          |  否  |              控制输出的随机性。范围：0-2。较低的值：更加集中，较高的值：更有创造性              |
-| GEMINI_API_KEY     | string |         None         | Yes  | 将`AI Provider`设置为`Gemini`时需要。[Gemini API key](https://makersuite.google.com/app/apikey) |
-| GEMINI_MODEL       | string | gemini-2.0-flash-001 | Yes  |                               模型选择仅限于配 Gemini 模型。置。                                |
-| GEMINI_TEMPERATURE | number |         0.7          |  No  |          `Gemini` 控制输出的随机性。范围：0-2。较低的值：更加集中，较高的值：更有创造           |
-| AI_COMMIT_LANGUAGE | string |          en          |  是  |                                         支持 19 种语言                                          |
-| AI_COMMIT_SYSTEM_PROMPT      | string |         None         |  否  |                                  自定义系统提示词（会覆盖默认提示词）                           |
-| AI_COMMIT_INCLUDE_REPO_CONTEXT | boolean |        true        |  否  | 在发送给 AI 的上下文中包含当前分支与最近提交记录                                                 |
-| AI_COMMIT_EXCLUDE_LOCKFILES    | boolean |        true        |  否  | 排除常见 lockfile 的 diff，减少噪音与 token 消耗                                                  |
-| AI_COMMIT_MAX_DIFF_CHARS       | number  |         0          |  否  | 限制发送给 AI 的 diff 最大字符数（0=不限制），用于避免上下文溢出                                   |
+| 配置                           |  类型   |  默认  | 必要 |                                           备注                                            |
+| :----------------------------- | :-----: | :----: | :--: | :---------------------------------------------------------------------------------------: |
+| OPENAI_API_KEY                 | string  |  None  |  是  |                 [OpenAI 令牌](https://platform.openai.com/account/api-keys)               |
+| OPENAI_BASE_URL                | string  |  None  |  否  |          OpenAI API 基础 URL（留空使用默认端点，或填写任何兼容 OpenAI 的 API 地址）         |
+| OPENAI_MODEL                   | string  | gpt-4o |  是  |    OpenAI MODEL，你可以通过运行 `Show Available OpenAI Models` 命令从列表中选择一个模型    |
+| OPENAI_TEMPERATURE             | number  |  0.7   |  否  |             控制输出的随机性。范围：0-2。较低的值：更加集中，较高的值：更有创造性           |
+| AI_COMMIT_PROMPT               | string  |  None  |  否  |      自定义提示词模板，使用 `${gitContext}` 占位符注入 git 上下文（会覆盖默认提示词）       |
+| AI_COMMIT_INCLUDE_REPO_CONTEXT | boolean |  true  |  否  |                     在发送给 AI 的上下文中包含当前分支与最近提交记录                        |
+| AI_COMMIT_EXCLUDE_LOCKFILES    | boolean |  true  |  否  |                        排除常见 lockfile 的 diff，减少噪音与 token 消耗                    |
+| AI_COMMIT_MAX_DIFF_CHARS       | number  |   0    |  否  |               限制发送给 AI 的 diff 最大字符数（0=不限制），用于避免上下文溢出              |
 
 ## ⌨️ 本地开发
 

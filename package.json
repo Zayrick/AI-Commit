@@ -2,7 +2,7 @@
   "name": "ai-commit",
   "displayName": "AI Commit",
   "description": "Use OpenAI API to review Git changes, generate conventional commit messages that meet the conventions, simplify the commit process, and keep the commit conventions consistent.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "node": ">=16",
     "vscode": "^1.77.0"
@@ -21,20 +21,26 @@
     "AI Commit",
     "Auto Commit"
   ],
-  "publisher": "sitoi",
-  "repository": "https://github.com/sitoi/ai-commit",
+  "publisher": "Zayrick",
+  "repository": "https://github.com/Zayrick/AI-Commit",
   "icon": "images/logo.png",
   "activationEvents": [
     "onCommand:ai-commit"
   ],
   "contributes": {
+    "icons": {
+      "ai-commit-generator": {
+        "description": "AI Commit Generator Icon",
+        "default": {
+          "fontPath": "./images/generator.woff",
+          "fontCharacter": "\\E900"
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.ai-commit",
-        "icon": {
-          "dark": "images/icon.svg",
-          "light": "images/icon.svg"
-        },
+        "icon": "$(ai-commit-generator)",
         "title": "AI Commit"
       },
       {

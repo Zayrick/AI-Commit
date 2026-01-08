@@ -6,7 +6,7 @@
 
 <h1>AI Commit</h1>
 
-Use OpenAI / Azure OpenAI / DeepSeek / Gemini API to review Git changes, generate conventional commit messages that meet the conventions, simplify the commit process, and keep the commit conventions consistent.
+Use OpenAI API to review Git changes, generate conventional commit messages that meet the conventions, simplify the commit process, and keep the commit conventions consistent.
 
 **English** · [简体中文](./README.zh_CN.md) · [Report Bug][github-issues-link] · [Request Feature][github-issues-link]
 
@@ -27,10 +27,8 @@ Use OpenAI / Azure OpenAI / DeepSeek / Gemini API to review Git changes, generat
 
 ## ✨ Features
 
-- 🤯 Support generating commit messages based on git diffs using ChatGPT / Azure API / DeepSeek / Gemini API.
-- 🗺️ Support multi-language commit messages.
-- 😜 Support adding Gitmoji.
-- 🛠️ Support custom system prompt.
+- 🤯 Support generating commit messages based on git diffs using OpenAI API (compatible with any OpenAI-compatible endpoint).
+- 🛠️ Support custom prompt template with `${gitContext}` placeholder.
 - 📝 Support Conventional Commits specification.
 
 ## 📦 Installation
@@ -55,26 +53,18 @@ Use OpenAI / Azure OpenAI / DeepSeek / Gemini API to review Git changes, generat
 
 ### ⚙️ Configuration
 
-> **Note** Version >= 0.0.5 Don't need to configure `EMOJI_ENABLED` and `FULL_GITMOJI_SPEC`, Default Prompt is [prompt/with_gitmoji.md](./prompt/with_gitmoji.md), If don't need to use `Gitmoji`. Please set `SYSTEM_PROMPT` to your custom prompt, please refer to [prompt/without_gitmoji.md](./prompt/without_gitmoji.md).
-
 In the VSCode settings, locate the "ai-commit" configuration options and configure them as needed:
 
-| Configuration      |  Type  |       Default        | Required |                                                       Notes                                                        |
-| :----------------- | :----: | :------------------: | :------: | :----------------------------------------------------------------------------------------------------------------: |
-| AI_PROVIDER        | string |        openai        |   Yes    |                                     Select AI Provider: `openai` or `gemini`.                                      |
-| OPENAI_API_KEY     | string |         None         |   Yes    |    Required when `AI Provider` is set to `OpenAI`. [OpenAI token](https://platform.openai.com/account/api-keys)    |
-| OPENAI_BASE_URL    | string |         None         |    No    |                If using Azure, use: https://{resource}.openai.azure.com/openai/deployments/{model}                 |
-| OPENAI_MODEL       | string |        gpt-4o        |   Yes    |      OpenAI MODEL, you can select a model from the list by running the `Show Available OpenAI Models` command      |
-| AZURE_API_VERSION  | string |         None         |    No    |                                                 AZURE_API_VERSION                                                  |
-| OPENAI_TEMPERATURE | number |         0.7          |    No    |      Controls randomness in the output. Range: 0-2. Lower values: more focused, Higher values: more creative       |
-| GEMINI_API_KEY     | string |         None         |   Yes    |     Required when `AI Provider` is set to `Gemini`. [Gemini API key](https://makersuite.google.com/app/apikey)     |
-| GEMINI_MODEL       | string | gemini-2.0-flash-001 |   Yes    |                       Gemini MODEL. Currently, model selection is limited to configuration.                        |
-| GEMINI_TEMPERATURE | number |         0.7          |    No    | Controls randomness in the output. Range: 0-2 for Gemini. Lower values: more focused, Higher values: more creative |
-| AI_COMMIT_LANGUAGE | string |          en          |   Yes    |                                               Supports 19 languages                                                |
-| AI_COMMIT_SYSTEM_PROMPT      | string |         None         |    No    |                                          Custom system prompt (overrides default)                                   |
-| AI_COMMIT_INCLUDE_REPO_CONTEXT | boolean |        true        |    No    | Include current branch + recent commits in the context sent to the AI                                               |
-| AI_COMMIT_EXCLUDE_LOCKFILES    | boolean |        true        |    No    | Exclude common lockfiles from diffs sent to the AI                                                                   |
-| AI_COMMIT_MAX_DIFF_CHARS       | number  |         0          |    No    | Max characters of diff to include (0 = unlimited). Useful to avoid context overflow                                 |
+| Configuration                  |  Type   | Default | Required |                                                        Notes                                                        |
+| :----------------------------- | :-----: | :-----: | :------: | :-----------------------------------------------------------------------------------------------------------------: |
+| OPENAI_API_KEY                 | string  |  None   |   Yes    |                      [OpenAI API Key](https://platform.openai.com/account/api-keys)                                 |
+| OPENAI_BASE_URL                | string  |  None   |    No    |               OpenAI API Base URL (leave empty for default OpenAI endpoint, or use any compatible API)              |
+| OPENAI_MODEL                   | string  | gpt-4o  |   Yes    |       OpenAI MODEL, you can select a model from the list by running the `Show Available OpenAI Models` command      |
+| OPENAI_TEMPERATURE             | number  |   0.7   |    No    |       Controls randomness in the output. Range: 0-2. Lower values: more focused, Higher values: more creative       |
+| AI_COMMIT_PROMPT               | string  |  None   |    No    |    Custom prompt template. Use `${gitContext}` placeholder to inject git diff context. Overrides default prompt.    |
+| AI_COMMIT_INCLUDE_REPO_CONTEXT | boolean |  true   |    No    |                        Include current branch + recent commits in the context sent to the AI                        |
+| AI_COMMIT_EXCLUDE_LOCKFILES    | boolean |  true   |    No    |                                    Exclude common lockfiles from diffs sent to the AI                               |
+| AI_COMMIT_MAX_DIFF_CHARS       | number  |    0    |    No    |                      Max characters of diff to include (0 = unlimited). Useful to avoid context overflow            |
 
 ## ⌨️ Local Development
 

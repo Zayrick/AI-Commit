@@ -2,7 +2,7 @@
   "name": "ai-commit-forge",
   "displayName": "AI Commit Forge",
   "description": "Use OpenAI API to review Git changes, generate conventional commit messages that meet the conventions, simplify the commit process, and keep the commit conventions consistent.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "engines": {
     "node": ">=16",
     "vscode": "^1.77.0"
@@ -24,7 +24,7 @@
   "publisher": "Zayrick",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Zayrick/AI-Commit.git"
+    "url": "https://github.com/Zayrick/ai-commit-forge.git"
   },
   "icon": "images/logo.png",
   "activationEvents": [
@@ -32,7 +32,7 @@
   ],
   "contributes": {
     "icons": {
-      "ai-commit-generator": {
+      "ai-commit-forge-generator": {
         "description": "AI Commit Generator Icon",
         "default": {
           "fontPath": "./images/generator.woff",
@@ -42,56 +42,56 @@
     },
     "commands": [
       {
-        "command": "extension.ai-commit",
-        "icon": "$(ai-commit-generator)",
+        "command": "extension.ai-commit-forge",
+        "icon": "$(ai-commit-forge-generator)",
         "title": "AI Commit Forge"
       },
       {
-        "command": "ai-commit.showAvailableModels",
+        "command": "ai-commit-forge.showAvailableModels",
         "title": "Show Available OpenAI Models"
       }
     ],
     "configuration": {
       "properties": {
-        "ai-commit.OPENAI_API_KEY": {
+        "ai-commit-forge.OPENAI_API_KEY": {
           "default": "",
           "description": "OpenAI API Key",
           "type": "string"
         },
-        "ai-commit.OPENAI_BASE_URL": {
+        "ai-commit-forge.OPENAI_BASE_URL": {
           "default": "",
           "description": "OpenAI API Base URL (leave empty for default OpenAI endpoint)",
           "type": "string"
         },
-        "ai-commit.OPENAI_MODEL": {
+        "ai-commit-forge.OPENAI_MODEL": {
           "default": "gpt-4o",
           "description": "OpenAI MODEL, you can select a model from the list by running the 'Show Available OpenAI Models' command",
           "type": "string"
         },
-        "ai-commit.OPENAI_TEMPERATURE": {
+        "ai-commit-forge.OPENAI_TEMPERATURE": {
           "type": "number",
           "default": 0.7,
           "minimum": 0,
           "maximum": 2,
           "description": "OpenAI temperature setting (0-2). Higher values make output more random, lower values more deterministic."
         },
-        "ai-commit.AI_COMMIT_PROMPT": {
+        "ai-commit-forge.AI_COMMIT_PROMPT": {
           "type": "string",
           "default": "",
           "editPresentation": "multilineText",
           "description": "Custom prompt template for generating commit messages. Use ${gitContext} placeholder to inject git diff context."
         },
-        "ai-commit.AI_COMMIT_INCLUDE_REPO_CONTEXT": {
+        "ai-commit-forge.AI_COMMIT_INCLUDE_REPO_CONTEXT": {
           "type": "boolean",
           "default": true,
           "description": "Include repository context (current branch and recent commits) in the prompt sent to the AI"
         },
-        "ai-commit.AI_COMMIT_EXCLUDE_LOCKFILES": {
+        "ai-commit-forge.AI_COMMIT_EXCLUDE_LOCKFILES": {
           "type": "boolean",
           "default": true,
           "description": "Exclude common lockfiles from diffs sent to the AI to reduce noise and token usage"
         },
-        "ai-commit.AI_COMMIT_MAX_DIFF_CHARS": {
+        "ai-commit-forge.AI_COMMIT_MAX_DIFF_CHARS": {
           "type": "number",
           "default": 0,
           "minimum": 0,
@@ -103,7 +103,7 @@
     "menus": {
       "scm/title": [
         {
-          "command": "extension.ai-commit",
+          "command": "extension.ai-commit-forge",
           "group": "navigation"
         }
       ]

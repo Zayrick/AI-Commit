@@ -6,7 +6,7 @@
 
 Generate Conventional Commits messages from your Git changes using OpenAI (or any OpenAI-compatible endpoint).
 
-**English** · [简体中文](./README.zh_CN.md) · [Marketplace](https://marketplace.visualstudio.com/items?itemName=Zayrick.ai-commit-forge) · [Issues](https://github.com/Zayrick/AI-Commit/issues)
+**English** · [简体中文](./README.zh_CN.md) · [Marketplace](https://marketplace.visualstudio.com/items?itemName=Zayrick.ai-commit-forge) · [Issues](https://github.com/Zayrick/ai-commit-forge/issues)
 
 ![](./images/demo.gif)
 
@@ -25,7 +25,7 @@ Generate Conventional Commits messages from your Git changes using OpenAI (or an
 ## 🚀 Quick Start
 
 1. Install **AI Commit Forge** from the VS Code Marketplace.
-2. In VS Code Settings (`ai-commit`), configure:
+2. In VS Code Settings (`ai-commit-forge`), configure:
    - `OPENAI_API_KEY` (required)
    - `OPENAI_MODEL` (default: `gpt-4o`)
 3. Stage your changes (`git add ...`) or leave changes unstaged.
@@ -39,7 +39,7 @@ Generate Conventional Commits messages from your Git changes using OpenAI (or an
 
 ## ⚙️ Configuration
 
-All settings are under the `ai-commit` namespace in VS Code Settings.
+All settings are under the `ai-commit-forge` namespace in VS Code Settings.
 
 | Setting | Required | Default | Description |
 | --- | :---: | --- | --- |

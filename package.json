@@ -2,7 +2,7 @@
   "name": "ai-commit-forge",
   "displayName": "AI Commit Forge",
   "description": "Use OpenAI API to review Git changes, generate conventional commit messages that meet the conventions, simplify the commit process, and keep the commit conventions consistent.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "engines": {
     "node": ">=16",
     "vscode": "^1.77.0"
@@ -27,9 +27,6 @@
     "url": "https://github.com/Zayrick/ai-commit-forge.git"
   },
   "icon": "images/logo.png",
-  "activationEvents": [
-    "onCommand:ai-commit"
-  ],
   "contributes": {
     "icons": {
       "ai-commit-forge-generator": {

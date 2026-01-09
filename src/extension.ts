@@ -32,7 +32,7 @@ export async function activate(context: vscode.ExtensionContext) {
       if (result === 'Yes') {
         await vscode.commands.executeCommand(
           'workbench.action.openSettings',
-          'ai-commit.OPENAI_API_KEY'
+          'ai-commit-forge.OPENAI_API_KEY'
         );
       }
     }

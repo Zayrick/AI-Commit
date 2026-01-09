@@ -11,13 +11,13 @@ export class CommandManager {
   constructor(private context: vscode.ExtensionContext) {}
 
   registerCommands() {
-    this.registerCommand('extension.ai-commit', generateCommitMsg);
-    this.registerCommand('extension.configure-ai-commit', () =>
-      vscode.commands.executeCommand('workbench.action.openSettings', 'ai-commit')
+    this.registerCommand('extension.ai-commit-forge', generateCommitMsg);
+    this.registerCommand('extension.configure-ai-commit-forge', () =>
+      vscode.commands.executeCommand('workbench.action.openSettings', 'ai-commit-forge')
     );
 
     // Show available OpenAI models
-    this.registerCommand('ai-commit.showAvailableModels', async () => {
+    this.registerCommand('ai-commit-forge.showAvailableModels', async () => {
       const configManager = ConfigurationManager.getInstance();
       const models = await configManager.getAvailableOpenAIModels();
       const selected = await vscode.window.showQuickPick(models, {
@@ -25,7 +25,7 @@ export class CommandManager {
       });
       
       if (selected) {
-        const config = vscode.workspace.getConfiguration('ai-commit');
+        const config = vscode.workspace.getConfiguration('ai-commit-forge');
         await config.update('OPENAI_MODEL', selected, vscode.ConfigurationTarget.Global);
       }
     });
@@ -37,7 +37,7 @@ export class CommandManager {
      * Show available Gemini models
      */
     /*
-    this.registerCommand('ai-commit.showAvailableGeminiModels', async () => {
+    this.registerCommand('ai-commit-forge.showAvailableGeminiModels', async () => {
       const configManager = ConfigurationManager.getInstance();
       const models = await configManager.getAvailableGeminiModels(); // Use the updated function
       const selected = await vscode.window.showQuickPick(models, {
@@ -45,7 +45,7 @@ export class CommandManager {
       });
 
       if (selected) {
-        const config = vscode.workspace.getConfiguration('ai-commit');
+        const config = vscode.workspace.getConfiguration('ai-commit-forge');
         await config.update('GEMINI_MODEL', selected, vscode.ConfigurationTarget.Global);
       }
     });
@@ -68,7 +68,7 @@ export class CommandManager {
         } else if (result === 'Configure') {
           await vscode.commands.executeCommand(
             'workbench.action.openSettings',
-            'ai-commit'
+            'ai-commit-forge'
           );
         }
       }

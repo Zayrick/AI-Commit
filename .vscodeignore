@@ -17,7 +17,7 @@ vsc-extension-quickstart.md
 out/**
 node_modules/**
 *.vsix
-aicommit.gif
+images/demo.gif
 package-lock.json
 yarn.lock
 pnpm-lock.yaml

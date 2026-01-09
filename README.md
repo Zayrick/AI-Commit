@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img height="120" src="https://github.com/Sitoi/ai-commit/blob/main/images/logo.png?raw=true">
+<img height="120" src="https://github.com/Zayrick/AI-Commit/blob/main/images/logo.png?raw=true">
 
 <h1>AI Commit</h1>
 
@@ -12,16 +12,16 @@ Use OpenAI API to review Git changes, generate conventional commit messages that
 
 <!-- SHIELD GROUP -->
 
-[![][github-contributors-shield]][github-contributors-link]
+<!-- [![][github-contributors-shield]][github-contributors-link]
 [![][github-forks-shield]][github-forks-link]
 [![][github-stars-shield]][github-stars-link]
 [![][github-issues-shield]][github-issues-link]
 [![][vscode-marketplace-shield]][vscode-marketplace-link]
 [![][total-installs-shield]][total-installs-link]
 [![][avarage-rating-shield]][avarage-rating-link]
-[![][github-license-shield]][github-license-link]
+[![][github-license-shield]][github-license-link] -->
 
-![](https://github.com/sitoi/ai-commit/blob/main/aicommit.gif?raw=true)
+![](https://github.com/Zayrick/AI-Commit/blob/main/images/demo.gif?raw=true)
 
 </div>
 
